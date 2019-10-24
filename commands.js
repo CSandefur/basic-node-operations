@@ -9,6 +9,7 @@ function evaluateCmd(userInput) {
   const userInputArray = userInput.split(" ");
   const command = userInputArray[0];
 
+
   switch (command) {
     case "echo":
       commandLibrary.echo(userInputArray.slice(1).join(" "));
@@ -21,7 +22,7 @@ function evaluateCmd(userInput) {
       break;
     case "tail":
       commandLibrary.tail(userInputArray.slice(1));
-
+      break;
     default:
       process.stdout.write('Invalid Command');
   }
@@ -42,10 +43,11 @@ const commandLibrary = {
 
   "head": function(fullPath) {
     const fileName = fullPath[0];
+    const arg1 = fullPath[1];
     fs.readFile(fileName, (err, data) => {
       if (err) throw err;
       var text = data.toString('utf8');
-      var slicedText = text.split('\n').slice(0, 11).join('\n');
+      var slicedText = text.split('\n').slice(0, arg1).join('\n');
       var bufferText = Buffer.from(slicedText, 'utf8');
       done(bufferText);
     });
@@ -53,10 +55,11 @@ const commandLibrary = {
 
   "tail": function(fullPath) {
     const fileName = fullPath[0];
+    const arg1 = fullPath[1];
     fs.readFile(fileName, (err, data) => {
       if (err) throw err;
       var text = data.toString('utf8');
-      var slicedText = text.split('\n').slice(-10).join('\n');
+      var slicedText = text.split('\n').slice(arg1).join('\n');
       var bufferText = Buffer.from(slicedText, 'utf8');
       done(bufferText);
     });
