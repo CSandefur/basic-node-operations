@@ -1,0 +1,140 @@
+###Questions
+
+> Run the commands `sort`, `wc` and `uniq` on the `commands.js` file. Explain how they work and what the output was.
+
+A: 
+
+`sort` : This sorts each line alphabetically without adjusting the original file. There are a lot of options you can use alongside sort.  In this case you can see it has also sorted by indentation levels. 
+
+```
+$ sort commands.js
+      break;
+      break;
+      commandLibrary.cat(userInputArray.slice(1));
+      commandLibrary.echo(userInputArray.slice(1).join(" "));
+      done(data);
+      if (err) throw err;
+    });
+    case "cat":
+    case "echo":
+    const fileName = fullPath[0];
+    done(userInput);
+    fs.readFile(fileName, (err, data) => {
+  "cat": function(fullPath) {
+  "echo": function(userInput) {
+  }
+  }
+  },
+  const command = userInputArray[0];
+  const userInputArray = userInput.split(" ");
+  process.stdout.write('\nprompt > ');
+  process.stdout.write(output);
+  switch (command) {
+
+
+
+
+
+
+}
+}
+};
+const commandLibrary = {
+const fs = require("fs");
+function done(output) {
+function evaluateCmd(userInput) {
+module.exports.commandLibrary = commandLibrary;
+module.exports.evaluateCmd = evaluateCmd;
+```
+
+`wc` : This item displays the line count, word count, and byte count for the document. 
+
+```
+$ wc commands.js
+ 37  73 822 commands.js
+```
+
+`uniq` : This command first sorts each line, and then only returns the unique ones (it removes the duplicates), leaving the original data intact. 
+
+```
+$ uniq commands.js
+const fs = require("fs");
+
+function done(output) {
+  process.stdout.write(output);
+  process.stdout.write('\nprompt > ');
+}
+
+function evaluateCmd(userInput) {
+  const userInputArray = userInput.split(" ");
+  const command = userInputArray[0];
+
+  switch (command) {
+    case "echo":
+      commandLibrary.echo(userInputArray.slice(1).join(" "));
+      break;
+    case "cat":
+      commandLibrary.cat(userInputArray.slice(1));
+      break;
+  }
+}
+
+const commandLibrary = {
+  "echo": function(userInput) {
+    done(userInput);
+  },
+
+  "cat": function(fullPath) {
+    const fileName = fullPath[0];
+    fs.readFile(fileName, (err, data) => {
+      if (err) throw err;
+      done(data);
+    });
+  }
+};
+
+module.exports.commandLibrary = commandLibrary;
+module.exports.evaluateCmd = evaluateCmd;
+
+```
+
+> Using the pipe (`|`) connect at least two commands and run it on `commands.js`. Explain what the output was and why the specific data was outputted.
+
+A: This first uses the head command which outputs the first lines of the file passed to it (by default it is 10, but I have passed the argument 1, so it returns just the first line). It then pipes the return from that command (the first line from commands.js) to the wc operation. This operation now takes my head output, and runs the wc operation on it. Wc prints the number of lines, words, and characters in its input (in this case, the first line of commands.js). 
+
+```
+$ head -1 commands.js | wc
+      1       4      27
+
+```
+
+
+> Reverse String
+
+> Given a string, reverse the order of characters in each word within a sentence while maintaining the original word order and whitespace and return the string. To improve your problem-solving experience, use the suggested functions to solve the problem.
+
+A: 
+
+```
+function reverseString(inputString) {
+  var split1 = inputString.split(' ');
+  var reversedArray = [];
+  
+  
+  split1.forEach((element) => {
+    var temp = element.split('');
+    temp.reverse();
+    var tempString = temp.join('');
+    reversedArray.push(tempString);
+  })
+
+  console.log(reversedArray);
+};
+
+var testString = "This is great practice!";
+
+reverseString(testString);
+```
+
+
+
